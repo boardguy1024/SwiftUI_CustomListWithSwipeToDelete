@@ -36,28 +36,10 @@ struct CartView: View {
                 LazyVStack(spacing: 0) {
                     
                     ForEach(cartData.items) { item in
-                        ItemView(item: $cartData.items[getIndex(item: item)])
+                        ItemView(item: cartData.items[getIndex(item: item)], items: $cartData.items)
                     }
                 }
             }
-            
-            Button(action: {
-                withAnimation(.easeInOut) {
-                    cartData.items.removeAll { item in
-                        item.id == cartData.items.first!.id
-                    }
-                }
-                
-            }) {
-                Text("Delete Cell with Anim")
-                    .frame(width: 200, height: 40)
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(.red)
-                    .cornerRadius(5)
-            }
-            
         }
         .background(Color("gray").ignoresSafeArea())
     }
